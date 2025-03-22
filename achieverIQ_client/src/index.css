@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* index.css */
+#nprogress .bar {
+  background: #facc15 !important; /* primary yellow */
+  height: 4px;
+}
