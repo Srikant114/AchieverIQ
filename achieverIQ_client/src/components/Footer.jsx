@@ -1,60 +1,72 @@
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from 'lucide-react';
+import FooterCopyrightSection from './FooterCopyrightSection';
+
+const socialLinks = [
+  { icon: Facebook, href: '#', title: 'Facebook' },
+  { icon: Twitter, href: '#', title: 'Twitter' },
+  { icon: Linkedin, href: '#', title: 'LinkedIn' },
+  { icon: Instagram, href: '#', title: 'Instagram' },
+];
+
 const Footer = () => {
-    return (
-      <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10 mt-20">
-        <div className="max-w-7xl mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-sm">
-          {/* Contact Us */}
-          <div>
-            <h4 className="font-bold mb-3">Contact Us</h4>
-            <p>+1 234 567 890</p>
-            <p>info@achieveriq.com</p>
-          </div>
-  
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold mb-3">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary">About Us</a></li>
-              <li><a href="#" className="hover:text-primary">Programs</a></li>
-              <li><a href="#" className="hover:text-primary">Results</a></li>
-            </ul>
-          </div>
-  
-          {/* Follow Us */}
-          <div>
-            <h4 className="font-bold mb-3">Follow Us</h4>
-            <ul className="flex space-x-4">
-              <li><a href="#" aria-label="Facebook">🌐</a></li>
-              <li><a href="#" aria-label="Twitter">🐦</a></li>
-              <li><a href="#" aria-label="Instagram">📸</a></li>
-            </ul>
-          </div>
-  
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-bold mb-3">Newsletter</h4>
-            <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-3 py-2 rounded bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700"
-              />
-              <button
-                type="submit"
-                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90"
+  return (
+    <footer className="bg-gray-900 text-gray-300 px-6 py-12 sm:px-10 lg:px-20">
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+        {/* Brand */}
+        <div>
+          <h3 className="text-white text-lg font-bold mb-2">AchieverIQ</h3>
+          <p className="text-sm">Empowering Academic Excellence</p>
+        </div>
+
+        {/* Links */}
+        <div>
+          <h4 className="text-white font-semibold mb-2">Quick Links</h4>
+          <ul className="space-y-1 text-sm">
+            <li><a href="#" className="hover:text-white transition">Home</a></li>
+            <li><a href="#" className="hover:text-white transition">About</a></li>
+            <li><a href="#" className="hover:text-white transition">Courses</a></li>
+            <li><a href="#" className="hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+
+        {/* Contact Info */}
+        <div>
+          <h4 className="text-white font-semibold mb-2">Contact Info</h4>
+          <ul className="text-sm space-y-1">
+            <li>Email: info@achieveriq.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Address: 123 Education Street</li>
+          </ul>
+        </div>
+
+        {/* Social Icons with Tooltips */}
+        <div>
+          <h4 className="text-white font-semibold mb-2">Follow Us</h4>
+          <div className="flex gap-4 mt-2">
+            {socialLinks.map(({ icon: Icon, href, title }, index) => (
+              <a
+                key={index}
+                href={href}
+                title={title}
+                aria-label={title}
+                className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-transform transform hover:-translate-y-1"
               >
-                Subscribe
-              </button>
-            </form>
+                <Icon className="w-4 h-4 text-gray-300 hover:text-white transition" />
+              </a>
+            ))}
           </div>
         </div>
-  
-        {/* Bottom Text */}
-        <div className="text-center text-xs mt-10 border-t pt-4 border-gray-300 dark:border-gray-700">
-          &copy; {new Date().getFullYear()} AchieverIQ. All rights reserved.
-        </div>
-      </footer>
-    );
-  };
-  
-  export default Footer;
-  
+      </div>
+
+      <FooterCopyrightSection />
+    </footer>
+  );
+};
+
+export default Footer;
+
