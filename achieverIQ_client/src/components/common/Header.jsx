@@ -18,7 +18,7 @@ const Header = () => {
     { name: 'Home', to: '/' },
     { name: 'Courses', to: '/courses' },
     { name: 'Results', to: '/results' },
-    { name: 'Contact', to: '/' },
+    { name: 'Contact', to: '/contact' },
   ];
 
   return (
