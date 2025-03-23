@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import FooterCopyrightSection from './FooterCopyrightSection';
 
+import achieverLogo from '../assets/achieverIqLogo.png'
+
 const socialLinks = [
   { icon: Facebook, href: '#', title: 'Facebook' },
   { icon: Twitter, href: '#', title: 'Twitter' },
@@ -19,7 +21,12 @@ const Footer = () => {
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 mb-10">
         {/* Brand */}
         <div>
-          <h3 className="text-white text-lg font-bold mb-2">AchieverIQ</h3>
+          <img
+                    src={achieverLogo}
+                    alt="AchieverIQ Logo"
+                    className="h-15 w-30"
+                  />
+          {/* <h3 className="text-white text-lg font-bold mb-2">AchieverIQ</h3> */}
           <p className="text-sm">Empowering Academic Excellence</p>
         </div>
 

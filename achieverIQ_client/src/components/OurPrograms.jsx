@@ -82,13 +82,13 @@ const OurPrograms = () => {
         </p>
       </div>
 
-      {/* Cards */}
+      {/* Program Cards */}
       <div className="flex justify-center gap-6 md:gap-8 transition-all duration-500">
         {visiblePrograms.map((program, i) => (
           <div
             key={i}
             onClick={() => setModalData(program)}
-            className="bg-white border shadow rounded-xl p-6 w-full max-w-sm cursor-pointer hover:shadow-md transition-transform duration-300"
+            className="relative bg-white border shadow rounded-xl p-6 w-full max-w-sm cursor-pointer hover:shadow-md transition-transform duration-300"
           >
             {program.badge && (
               <span className="absolute top-3 right-3 bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -110,7 +110,7 @@ const OurPrograms = () => {
         ))}
       </div>
 
-      {/* Arrows */}
+      {/* Arrow Buttons */}
       <div className="flex justify-center gap-4 mt-10">
         <button
           onClick={() => handleArrow('left')}

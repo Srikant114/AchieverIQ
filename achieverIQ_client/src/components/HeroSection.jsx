@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
-const images = [
-  'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1588072432904-843af37f03ed?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-];
+import HeroImgOne from '../assets/hereSection1.png';
+import HeroImgTwo from '../assets/heroSection2.png';
+import HeroImgThree from '../assets/heroSection3.png';
+
+const images = [HeroImgOne, HeroImgTwo, HeroImgThree];
 
 const rotatingWords = ['Dream', 'Goal', 'Journey'];
 
@@ -29,7 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative mt-10 md:mt-0 overflow-hidden grid md:grid-cols-2 gap-6 px-6 lg:px-20 py-12 min-h-[95vh] items-center bg-gray-50">
+    <section className="relative mt-10 md:mt-0 overflow-hidden grid md:grid-cols-2 gap-6 px-6 lg:px-20 py-16 min-h-[95vh] items-center bg-gray-50">
       {/* Floating Background Blobs */}
       <motion.div
         className="absolute w-72 h-72 bg-blue-100 rounded-full blur-3xl top-[-80px] left-[-80px] opacity-40 z-0"
@@ -42,7 +42,7 @@ const HeroSection = () => {
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* LEFT SIDE */}
+      {/* LEFT TEXT */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
@@ -76,33 +76,34 @@ const HeroSection = () => {
         </button>
       </motion.div>
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT IMAGES */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         className="relative z-10"
       >
-        {/* DESKTOP IMAGES */}
-        <div className="hidden md:flex relative justify-center items-center w-full max-w-lg min-h-[420px] mx-auto">
+        {/* Desktop: Show all 3 cascading */}
+        <div className="hidden md:flex justify-center items-center gap-6 w-full max-w-6xl mx-auto min-h-[420px] px-4">
           {images.map((src, i) => {
-            const baseClass = "object-cover rounded-xl shadow-lg";
+            const baseClass = 'object-cover rounded-xl shadow-lg';
             const motionProps = {
               animate: { y: [0, i % 2 === 0 ? 10 : -10, 0] },
               transition: { repeat: Infinity, duration: 4 + i, ease: 'easeInOut' },
             };
-            const classMap = [
-              'absolute top-0 left-0 w-40 h-60 z-10',
-              'relative z-20 w-64 h-80 rounded-2xl shadow-2xl',
-              'absolute bottom-0 right-0 w-40 h-60 z-10',
-            ];
-
+            const sizes = ['w-48 h-64', 'w-64 h-80', 'w-48 h-64'];
             return (
-              <Tilt key={i} tiltMaxAngleX={15} tiltMaxAngleY={15} scale={i === 1 ? 1.05 : 1}>
+              <Tilt
+                key={i}
+                tiltMaxAngleX={15}
+                tiltMaxAngleY={15}
+                scale={i === 1 ? 1.05 : 1}
+                className={`${sizes[i]} relative`}
+              >
                 <motion.img
-                  src={`${src}?auto=format&fit=crop&w=400&q=80`}
+                  src={src}
                   alt={`Hero Image ${i + 1}`}
-                  className={`${baseClass} ${classMap[i]}`}
+                  className={`${baseClass} w-full h-full`}
                   {...motionProps}
                 />
               </Tilt>
@@ -110,7 +111,7 @@ const HeroSection = () => {
           })}
         </div>
 
-        {/* MOBILE IMAGE SLIDER */}
+        {/* Mobile: 1 image slider */}
         <div className="md:hidden relative w-full max-w-md mx-auto h-60 overflow-hidden rounded-xl">
           {images.map((src, i) => (
             <motion.div
@@ -123,7 +124,7 @@ const HeroSection = () => {
             >
               <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10}>
                 <img
-                  src={`${src}?auto=format&fit=crop&w=600&q=80`}
+                  src={src}
                   alt={`Slide ${i + 1}`}
                   className="w-full h-full object-cover rounded-xl shadow-lg"
                   draggable={false}

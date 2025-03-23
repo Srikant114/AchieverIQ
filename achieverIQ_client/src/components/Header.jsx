@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import achieverLogo from '../assets/achieverIqLogo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // 👤 Mock user (replace with real auth later)
   const user = {
     name: 'Srikant Sahu',
     email: 'srikantsahu114@gmail.com',
     role: 'superAdmin',
   };
-  // const user = null;
 
   const navItems = [
     { name: 'Home', to: '/' },
@@ -23,33 +21,22 @@ const Header = () => {
     { name: 'Contact', to: '/' },
   ];
 
-  // 🧠 Effects
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    const closeDropdown = () => setShowDropdown(false);
-    window.addEventListener('click', closeDropdown);
-    return () => window.removeEventListener('click', closeDropdown);
-  }, []);
-
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'py-2 shadow-md backdrop-blur-md' : 'py-4'
-      } bg-white/80 dark:bg-gray-900/80 text-gray-900 dark:text-white`}
+      className="fixed top-0 left-0 w-full z-50 bg-white/90 shadow-md backdrop-blur-md text-gray-900 transition-all duration-300"
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-3 md:py-4">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-gray-800 dark:text-white">
-          AchieverIQ
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={achieverLogo}
+            alt="AchieverIQ Logo"
+            className="h-11 w-22"
+          />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-10 flex-1 justify-center text-sm font-medium text-gray-700 dark:text-gray-300">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-10 flex-1 justify-center text-sm font-medium">
           {navItems.map(({ name, to }) => (
             <Link
               key={to}
@@ -65,7 +52,7 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Right Side - Avatar/Login */}
+        {/* Right Side */}
         <div className="hidden md:block relative z-50">
           {!user ? (
             <Link
@@ -78,15 +65,15 @@ const Header = () => {
             <div className="relative" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="w-10 h-10 rounded-full bg-blue-600 text-white border-2 border-white dark:border-gray-700 font-bold flex items-center justify-center uppercase"
+                className="w-10 h-10 rounded-full bg-blue-600 text-white border-2 border-white font-bold flex items-center justify-center uppercase"
               >
                 {user.name.charAt(0)}
               </button>
 
               {showDropdown && (
-                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded shadow-md p-4 text-sm text-gray-900 dark:text-white">
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded shadow-md p-4 text-sm text-gray-900">
                   <div className="font-semibold text-primary">{user.name}</div>
-                  <div className="text-gray-600 dark:text-gray-300">{user.email}</div>
+                  <div className="text-gray-600">{user.email}</div>
                   <div className="text-xs text-gray-400">{user.role}</div>
                 </div>
               )}
@@ -107,7 +94,7 @@ const Header = () => {
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 text-sm px-6 py-4 flex flex-col gap-3">
+        <div className="md:hidden bg-white text-gray-800 px-6 py-4 flex flex-col gap-3">
           {navItems.map(({ name, to }) => (
             <Link
               key={to}
@@ -132,7 +119,7 @@ const Header = () => {
               Login
             </Link>
           ) : (
-            <div className="flex flex-col gap-1 border-t pt-4 text-sm text-gray-800 dark:text-gray-100">
+            <div className="flex flex-col gap-1 border-t pt-4 text-sm text-gray-800">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-primary">{user.name}</span>
                 <span className="text-gray-500">{user.email}</span>
