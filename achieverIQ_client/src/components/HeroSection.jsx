@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
 const images = [
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c',
-  'https://images.unsplash.com/photo-1571260899304-425eee4c7efc',
-  'https://images.unsplash.com/photo-1581726707445-75cbe4efc586',
+  'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'https://images.unsplash.com/photo-1588072432904-843af37f03ed?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 ];
 
 const rotatingWords = ['Dream', 'Goal', 'Journey'];
