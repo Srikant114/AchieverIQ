@@ -1,43 +1,137 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Tilt from 'react-parallax-tilt';
+
+const images = [
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c',
+  'https://images.unsplash.com/photo-1571260899304-425eee4c7efc',
+  'https://images.unsplash.com/photo-1581726707445-75cbe4efc586',
+];
+
+const rotatingWords = ['Dream', 'Goal', 'Journey'];
 
 const HeroSection = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % images.length);
+    }, 10000);
+    return () => clearInterval(autoSlide);
+  }, []);
+
   return (
-    <section className="grid md:grid-cols-2 gap-6 px-6 py-12 items-center bg-white">
-      {/* LEFT TEXT SECTION */}
+    <section className="relative mt-10 md:mt-0 overflow-hidden grid md:grid-cols-2 gap-6 px-6 lg:px-20 py-12 min-h-[95vh] items-center bg-gray-50">
+      {/* Floating Background Blobs */}
+      <motion.div
+        className="absolute w-72 h-72 bg-blue-100 rounded-full blur-3xl top-[-80px] left-[-80px] opacity-40 z-0"
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute w-64 h-64 bg-yellow-100 rounded-full blur-2xl bottom-[-60px] right-[-60px] opacity-40 z-0"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* LEFT SIDE */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="space-y-5"
+        className="space-y-6 z-10"
       >
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
-          Conquer Your Dream With <span className="text-primary">AchieverIQ</span>
+        <div className="flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium w-fit">
+          🎓 Admissions Open for 2024-25 Academic Year
+        </div>
+
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight break-words max-w-full">
+          Conquer Your{' '}
+          <motion.span
+            key={rotatingWords[wordIndex]}
+            className="text-primary inline-block"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {rotatingWords[wordIndex]}
+          </motion.span>{' '}
+          With AchieverIQ
         </h1>
-        <p className="text-gray-600 text-base sm:text-lg">
+
+        <p className="text-gray-600 text-base sm:text-lg max-w-full">
           Empowering students to achieve academic excellence through personalized learning journeys.
         </p>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
-          <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded text-sm w-fit">
-            🎓 Admissions Open for 2024-25 Academic Year
-          </span>
-          <button className="bg-black text-white px-6 py-2 rounded hover:bg-primary hover:text-black transition">
-            Apply Now →
-          </button>
-        </div>
+
+        <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-3 rounded-md shadow transition flex items-center gap-2">
+          Apply Now <span className="text-xl">→</span>
+        </button>
       </motion.div>
 
-      {/* RIGHT IMAGE SECTION */}
+      {/* RIGHT SIDE */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex justify-center"
+        className="relative z-10"
       >
-        <img
-          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Students Learning"
-          className="w-full max-w-md rounded-xl shadow-lg object-cover"
-        />
+        {/* DESKTOP IMAGES */}
+        <div className="hidden md:flex relative justify-center items-center w-full max-w-lg min-h-[420px] mx-auto">
+          {images.map((src, i) => {
+            const baseClass = "object-cover rounded-xl shadow-lg";
+            const motionProps = {
+              animate: { y: [0, i % 2 === 0 ? 10 : -10, 0] },
+              transition: { repeat: Infinity, duration: 4 + i, ease: 'easeInOut' },
+            };
+            const classMap = [
+              'absolute top-0 left-0 w-40 h-60 z-10',
+              'relative z-20 w-64 h-80 rounded-2xl shadow-2xl',
+              'absolute bottom-0 right-0 w-40 h-60 z-10',
+            ];
+
+            return (
+              <Tilt key={i} tiltMaxAngleX={15} tiltMaxAngleY={15} scale={i === 1 ? 1.05 : 1}>
+                <motion.img
+                  src={`${src}?auto=format&fit=crop&w=400&q=80`}
+                  alt={`Hero Image ${i + 1}`}
+                  className={`${baseClass} ${classMap[i]}`}
+                  {...motionProps}
+                />
+              </Tilt>
+            );
+          })}
+        </div>
+
+        {/* MOBILE IMAGE SLIDER */}
+        <div className="md:hidden relative w-full max-w-md mx-auto h-60 overflow-hidden rounded-xl">
+          {images.map((src, i) => (
+            <motion.div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-700 ${
+                i === mobileIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: i === mobileIndex ? 1 : 0 }}
+            >
+              <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                <img
+                  src={`${src}?auto=format&fit=crop&w=600&q=80`}
+                  alt={`Slide ${i + 1}`}
+                  className="w-full h-full object-cover rounded-xl shadow-lg"
+                  draggable={false}
+                />
+              </Tilt>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );
