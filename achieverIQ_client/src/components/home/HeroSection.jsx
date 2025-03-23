@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
-import HeroImgOne from '../assets/hereSection1.png';
-import HeroImgTwo from '../assets/heroSection2.png';
-import HeroImgThree from '../assets/heroSection3.png';
+import HeroImgOne from '../../assets/hereSection1.png';
+import HeroImgTwo from '../../assets/heroSection2.png';
+import HeroImgThree from '../../assets/heroSection3.png';
 
 const images = [HeroImgOne, HeroImgTwo, HeroImgThree];
 

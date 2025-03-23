@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import achieverLogo from '../assets/achieverIqLogo.png';
+import achieverLogo from '../../assets/achieverIqLogo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

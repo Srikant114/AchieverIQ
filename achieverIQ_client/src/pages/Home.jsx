@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import HeroSection from '../components/HeroSection';
-import OurPrograms from '../components/OurPrograms';
-import WhyChooseUs from '../components/WhyChooseUs';
-import StartJourney from '../components/StartJourney';
+import HeroSection from '../components/home/HeroSection';
+import OurPrograms from '../components/home/OurPrograms';
+import WhyChooseUs from '../components/home/WhyChooseUs';
+import StartJourney from '../components/home/StartJourney';
 
 const Home = () => {
   return (

@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import FooterCopyrightSection from './FooterCopyrightSection';
 
-import achieverLogo from '../assets/achieverIqLogo.png'
+import achieverLogo from '../../assets/achieverIqLogo.png'
 
 const socialLinks = [
   { icon: Facebook, href: '#', title: 'Facebook' },

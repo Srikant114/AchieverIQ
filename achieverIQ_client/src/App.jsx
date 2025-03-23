@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
 import { AnimatePresence } from 'framer-motion';
-import PageLoader from './components/PageLoader';
-import ScrollToTopButton from './components/ScrollToTopButton';
+import PageLoader from './components/common/PageLoader';
+import ScrollToTopButton from './components/common/ScrollToTopButton';
 
 function AnimatedRoutes() {
   const location = useLocation();
