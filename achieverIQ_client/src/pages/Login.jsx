@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Lock, Mail, KeyRound } from 'lucide-react';
 import { FaGoogle, FaFacebookF, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import achieverLogo from '../assets/achieverIqLogo.png';
 
@@ -26,9 +27,9 @@ const Login = () => {
           <h2 className="text-xl font-semibold mt-2">Sign in to your account</h2>
           <p className="text-sm text-gray-500 mt-1">
             Or{' '}
-            <a href="/register" className="text-blue-600 hover:underline font-medium">
-              register for a new account
-            </a>
+            <Link to="/register" className="text-blue-600 hover:underline font-medium">
+    register for a new account
+  </Link>
           </p>
         </div>
 
