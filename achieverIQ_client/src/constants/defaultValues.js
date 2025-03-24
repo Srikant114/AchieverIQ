@@ -1,5 +1,5 @@
 // export const apiUrl = `http://localhost:5000/api/`;
-export const apiUrl = `https://achieveriq.onrender.com/`;
+export const apiUrl = `https://achieveriq.onrender.com/api/`;
 
 export const apiSecret = `registeruser`;
 
