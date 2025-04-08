@@ -28,8 +28,8 @@ const Login = () => {
           <p className="text-sm text-gray-500 mt-1">
             Or{' '}
             <Link to="/register" className="text-blue-600 hover:underline font-medium">
-    register for a new account
-  </Link>
+              register for a new account
+            </Link>
           </p>
         </div>
 

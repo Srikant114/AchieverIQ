@@ -22,11 +22,10 @@ const Footer = () => {
         {/* Brand */}
         <div>
           <img
-                    src={achieverLogo}
-                    alt="AchieverIQ Logo"
-                    className="h-15 w-30"
-                  />
-          {/* <h3 className="text-white text-lg font-bold mb-2">AchieverIQ</h3> */}
+            src={achieverLogo}
+            alt="AchieverIQ Logo"
+            className="h-15 w-30"
+          />
           <p className="text-sm">Empowering Academic Excellence</p>
         </div>
 

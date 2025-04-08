@@ -8,7 +8,7 @@ const PageLoader = () => {
 
   useEffect(() => {
     NProgress.start();
-    const timeout = setTimeout(() => NProgress.done(), 300); // simulate delay
+    const timeout = setTimeout(() => NProgress.done(), 300);
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 

@@ -8,12 +8,6 @@ const Header = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // const user = {
-  //   name: 'Srikant Sahu',
-  //   email: 'srikantsahu114@gmail.com',
-  //   role: 'superAdmin',
-  // };
-
   const user = null
 
   const navItems = [
